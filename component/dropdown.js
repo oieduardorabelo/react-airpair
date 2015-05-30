@@ -15,26 +15,26 @@ var Dropdown = React.createClass({
   mixins: [
     require('react-onclickoutside')
   ],
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       items: []
     }
   },
-  getInitialState: function() {
+  getInitialState() {
     return {
       openList: false,
       selectedItems: 0
     }
   },
-  handleClickOutside: function() {
+  handleClickOutside() {
     this.setState({ openList: false })
   },
-  handleClickLabel: function() {
+  handleClickLabel() {
     this.setState({ openList: !this.state.openList })
   },
-  handleChangeItemCheckbox: function(checkbox, itemName) {
-    var state = this.state
-    var $label = React.findDOMNode(this.refs.listLabel)
+  handleChangeItemCheckbox(checkbox, itemName) {
+    var { state, refs, props } = this
+    var $label = React.findDOMNode(refs.listLabel)
     var $target = checkbox
     var targetLabel = itemName
 
@@ -54,13 +54,13 @@ var Dropdown = React.createClass({
         $label.value = targetLabel
         break
       default:
-        $label.value = this.props.multilabel
+        $label.value = props.multilabel
         break
     }
   },
-  getItems: function() {
+  getItems() {
     return JSON.parse(this.props.items)
-    .map(function(item, index){
+    .map((item, index) => {
       var itemRef = 'jovem' + index
       return (
         <li key={index}>
@@ -74,13 +74,14 @@ var Dropdown = React.createClass({
           /></label>
         </li>
       )
-    }.bind(this))
+    })
   },
-  render: function() {
+  render() {
+    var { state } = this
     var listStyle = {
-      display: this.state.openList ? 'block' : 'none'
+      display: state.openList ? 'block' : 'none'
     }
-    var divAria = this.state.openList ? 'true' : 'false'
+    var divAria = state.openList ? 'true' : 'false'
     var items = this.getItems()
 
     return (

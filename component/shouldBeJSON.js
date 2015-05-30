@@ -2,7 +2,7 @@
 
 import warning from 'react/lib/warning'
 
-module.exports = function(props, propName, componentName) {
+module.exports = (props, propName, componentName) => {
   var items
   if (props[propName]) {
     try {

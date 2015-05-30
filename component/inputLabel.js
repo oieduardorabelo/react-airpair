@@ -7,10 +7,10 @@ var InputLabel = React.createClass({
     placeholder: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func.isRequired
   },
-  handleClick: function() {
+  handleClick() {
     this.props.onClick()
   },
-  render: function() {
+  render() {
     return (
       <input type="text" readOnly
       className="input_label"

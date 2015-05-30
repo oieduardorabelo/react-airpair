@@ -9,10 +9,10 @@ var InputItem = React.createClass({
     onChange: React.PropTypes.func.isRequired,
     value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]).isRequired
   },
-  handleChange: function() {
+  handleChange() {
     this.props.onChange(React.findDOMNode(this), this.props.itemName)
   },
-  render: function() {
+  render() {
     return (
       <input type="checkbox"
         onChange={this.handleChange}
