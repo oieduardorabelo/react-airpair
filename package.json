@@ -1,0 +1,19 @@
+{
+  "name": "react-airpair",
+  "version": "0.0.1",
+  "description": "React Airpair with Gregory Waxman",
+  "scripts": {
+    "start": "./node_modules/.bin/live-server & ./node_modules/.bin/webpack --watch --progress --color"
+  },
+  "dependencies": {
+    "babel-core": "^5.4.7",
+    "babel-loader": "^5.1.3",
+    "live-server": "^0.7.1",
+    "node-libs-browser": "^0.5.2",
+    "react": "^0.13.3",
+    "react-onclickoutside": "^0.2.4",
+    "webpack": "^1.9.10"
+  },
+  "author": "Eduardo Rabelo <oieduardorabelo@gmail.com> (http://eduardorabelo.me)",
+  "license": "MIT"
+}

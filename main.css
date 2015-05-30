@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+}
+
+input {
+  border: none;
+  background-color: #EEEEEE;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 12px;
+}
+
+ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+li {
+  font-size: 16px;
+}
+
+label[aria-selected="true"] {
+  background-color: #EEEEEE;
+}
+.col-2 {
+  float: left;
+  width: 30%;
+}
