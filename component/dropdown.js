@@ -61,7 +61,7 @@ var Dropdown = React.createClass({
   getItems() {
     return JSON.parse(this.props.items)
     .map((item, index) => {
-      var itemRef = 'jovem' + index
+      var itemRef = 'listItem' + index
       return (
         <li key={index}>
         <label> {item.name}
