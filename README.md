@@ -1,6 +1,6 @@
 # React Airpair
 
-Setup for the Airpair with (Gregory Waxman)[https://github.com/Akkuma],
+Setup for the Airpair with [Gregory Waxman](https://github.com/Akkuma),
 
 Where I'll try to improve this setup and clarify some doubts
 
