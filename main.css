@@ -1,29 +1,50 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
 }
 
-input {
-  border: none;
-  background-color: #EEEEEE;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 12px;
-}
-
 ul {
+  border: 1px solid #CCCCCC;
   padding-left: 0;
+  list-style-type: none;
   margin-bottom: 0;
   margin-top: 0;
 }
 
-li {
+label {
+  cursor: pointer;
+  display: block;
   font-size: 16px;
+  padding: 10px;
+}
+
+label input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+label:hover {
+  background-color: #EFEFEF;
 }
 
 label[aria-selected="true"] {
-  background-color: #EEEEEE;
+  background-color: #DCDCDC;
 }
-.col-2 {
+
+.col-3 {
   float: left;
-  width: 30%;
+  width: 33.3333%;
+}
+
+.input_label {
+  background-color: #EEEEEE;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
 }

@@ -32,10 +32,11 @@ var Dropdown = React.createClass({
   handleClickLabel: function() {
     this.setState({ openList: !this.state.openList })
   },
-  holaJovem: function(checkbox) {
+  handleChangeItemCheckbox: function(checkbox, itemName) {
     var state = this.state
     var $label = React.findDOMNode(this.refs.listLabel)
     var $target = checkbox
+    var targetLabel = itemName
 
     if ($target.checked) {
       this.setState({ selectedItems: ++state.selectedItems })
@@ -50,7 +51,7 @@ var Dropdown = React.createClass({
         $label.value = ''
         break
       case 1:
-        $label.value = $target.value
+        $label.value = targetLabel
         break
       default:
         $label.value = this.props.multilabel
@@ -65,9 +66,10 @@ var Dropdown = React.createClass({
         <li key={index}>
         <label> {item.name}
           <InputItem
+            onChange={this.handleChangeItemCheckbox}
             inputName={this.props.inputName}
-            onChange={this.holaJovem}
-            value={item.name}
+            itemName={item.name}
+            value={item.val}
             ref={itemRef}
           /></label>
         </li>

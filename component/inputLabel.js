@@ -13,6 +13,7 @@ var InputLabel = React.createClass({
   render: function() {
     return (
       <input type="text" readOnly
+      className="input_label"
       placeholder={this.props.placeholder}
       onClick={this.handleClick}
       />
