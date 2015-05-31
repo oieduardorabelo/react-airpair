@@ -23,7 +23,9 @@ var Dropdown = React.createClass({
   getInitialState() {
     return {
       openList: false,
-      selectedItems: 0
+      selectedItems: 0,
+	    currentItem: 0,
+	    label: ''
     }
   },
   handleClickOutside() {
@@ -59,23 +61,63 @@ var Dropdown = React.createClass({
     }
   },
   getItems() {
-    return JSON.parse(this.props.items)
-    .map((item, index) => {
-      var itemRef = 'listItem' + index
-      return (
-        <li key={index}>
-        <label> {item.name}
-          <InputItem
-            onChange={this.handleChangeItemCheckbox}
-            inputName={this.props.inputName}
-            itemName={item.name}
-            value={item.val}
-            ref={itemRef}
-          /></label>
-        </li>
-      )
-    })
+    var currentItem = this.state.currentItem;
+    return this.props.items
+      .map((item, index) => {
+        var itemRef = 'listItem' + index,
+  		    className = currentItem == index ? 'highlight' : '';
+          
+        return (
+          <li key={index}>
+            <label className={className} aria-selected={item.checked}> {item.name}
+              <input type="checkbox"
+                  onChange={this.handleChangeItemCheckbox}
+                  name={this.props.inputName}
+                  value={item.value}
+                  checked={item.checked}
+                />
+            </label>
+          </li>
+        )
+      });
   },
+  handleKeyUp(evt) {
+    var handler = this[`handle${evt.key}`];
+	
+	  handler && handler();
+  },
+	handleArrowUp() {
+   	var currentItem = this.state.currentItem;
+
+		return this.setState({ currentItem: currentItem == 0 ? this.props.items.length - 1 : --currentItem});
+	},
+	handleArrowDown() {
+		var currentItem = this.state.currentItem,
+			  itemLen = this.props.items.length - 1;
+
+		return this.setState({ currentItem: currentItem == itemLen ? 0 : ++currentItem});
+	},
+	handleEnter() {
+	  var { state, props } = this
+		var item = props.items[state.currentItem];
+		item.checked = !item.checked;
+		
+		var selectedItems = state.selectedItems;
+		
+		if (item.checked) ++selectedItems;
+		else --selectedItems;
+		
+		var label;
+		
+    if (selectedItems == 1 && !item.checked) label = props.items.filter(function (item) { return item.checked; })[0].name;
+    else if (selectedItems == 1) label = item.name;
+    else if (selectedItems > 1) label = props.multilabel
+    else label = '';
+    
+
+		this.setState({label: label, selectedItems: selectedItems});
+		this.setProps({items: this.props.items});
+	},
   render() {
     var { state } = this
     var listStyle = {
@@ -85,16 +127,40 @@ var Dropdown = React.createClass({
     var items = this.getItems()
 
     return (
+	<div>
+	    <input type="text" onFocus={this.handleClickLabel} onKeyUp={this.handleKeyUp} placeholder={this.state.label || this.props.placeholder} />
       <div aria-busy={divAria}>
-        <InputLabel
-          onClick={this.handleClickLabel}
-          placeholder={this.props.placeholder}
-          ref='listLabel'
-          />
         <ul style={listStyle}>{items}</ul>
       </div>
+  </div>
     )
   }
 })
+
+/*
+eventBus = (function () {
+  var events = {};
+  
+  on = events[topic].push(fn)
+  off
+})
+
+this.on(next, handleArrowDown)
+this.on(prev, handleArrowUp)
+this.on(select, handleEnter)
+
+this.trigger(next)
+this.trigger(prev)*/
+/*
+
+<ExternalControlDropdown>
+  handleClickLabel() {
+    this.setState({isOpen: true});
+  }
+ <input type="text" onFocus={this.handleClickLabel} onKeyUp={this.handleKeyUp}/>
+ <Dropdown isOpen={this.state.isOpen}/>
+</ExternalControlDropdown>
+
+*/
 
 module.exports = Dropdown
