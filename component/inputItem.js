@@ -18,6 +18,7 @@ var InputItem = React.createClass({
         onChange={this.handleChange}
         name={this.props.inputName}
         value={this.props.value}
+        checked={this.props.checked}
       />
     )
   }

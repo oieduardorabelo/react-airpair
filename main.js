@@ -5,7 +5,7 @@ import Dropdown from './component/dropdown.js'
 
 React.render(
   <Dropdown
-    items='[{ "name": "Food", "val": "AllFood" },{ "name": "Drinks", "val": "AllDrinks" }]'
+    items={[{ "name": "Food", "val": "AllFood" },{ "name": "Drinks", "val": "AllDrinks" }]}
     multilabel="Multiple categories"
     placeholder="Select categories"
     inputName="categories[]"
@@ -14,7 +14,7 @@ React.render(
 
 React.render(
   <Dropdown
-    items='[{ "name": "Beginner", "val": 1 },{ "name": "Intermediate", "val": 2 }]'
+    items={[{ "name": "Beginner", "val": 1 },{ "name": "Intermediate", "val": 2 }]}
     multilabel="Multiple levels"
     placeholder="Select level"
     inputName="levels[]"
